@@ -53,7 +53,7 @@ def  update_movie(movie_id:int,updated_movie:dict=Body()):
             return movies
     return{"message":"Movie not found"}
 
-@app.get('/delete_movie_by_id/{movie_id}')
+@app.delete('/delete_movie_by_id/{movie_id}')
 
 def delete_movie(movie_id:int):
     for movie in movies:
