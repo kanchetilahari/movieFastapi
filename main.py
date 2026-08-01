@@ -43,20 +43,21 @@ def filter_movies(genre:str=Query(None),language:str=Query(None),rating:int=Quer
 @app.post('/add_movie')
 def add_new_movie(addnewmovie:dict=Body()):
     movies.append(addnewmovie)
-    return {"message":"MOvie added successfully"}
+    return movies
 
-@app.put('/update_a_movie_by_id/{id}')
+@app.put('/update_a_movie_by_id/{movie_id}')
 def  update_movie(movie_id:int,updated_movie:dict=Body()):
     for movie in movies:
         if movie["id"]==movie_id:
             movie.update(updated_movie)
-            return{"meassage":"MOvie updated scuuessfully"}
+            return movies
     return{"message":"Movie not found"}
 
-@app.get('/delete_movie_by_id/{id}')
+@app.get('/delete_movie_by_id/{movie_id}')
+
 def delete_movie(movie_id:int):
     for movie in movies:
         if movie["id"]==movie_id:
             movies.remove(movie)
-            return {"message":"Movie deleted succesfully"}
+            return movies
     return{"message":"movie not found"}
